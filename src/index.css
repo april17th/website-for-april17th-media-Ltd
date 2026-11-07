@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Instrument Serif", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #f4f3ee;
+    color: #11130f;
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: #c8ff00;
+    color: #11130f;
+  }
+}
+
+@layer components {
+  .page-grid {
+    width: min(100% - 40px, 1320px);
+    margin-inline: auto;
+  }
+
+  .font-display {
+    font-family: "Instrument Serif", serif;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .signal-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #c8ff00;
+    box-shadow: 5px 0 0 rgba(200, 255, 0, 0.45);
+  }
+
+  .nav-link {
+    position: relative;
+    padding-block: 8px;
+  }
+
+  .nav-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 1px;
+    content: "";
+    background: #11130f;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 250ms ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .button-dark,
+  .button-light {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 999px;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 200ms ease;
+  }
+
+  .button-dark {
+    background: #11130f;
+    color: white;
+  }
+
+  .button-dark:hover {
+    background: #c8ff00;
+    color: #11130f;
+  }
+
+  .button-light {
+    border: 1px solid rgba(17, 19, 15, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    color: #11130f;
+  }
+
+  .button-light:hover {
+    border-color: #11130f;
+    background: white;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(62px, 8.2vw, 132px);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.78;
+  }
+
+  .hero-italic {
+    margin-top: 0.18em;
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.055em;
+  }
+
+  .section-title {
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(52px, 7vw, 94px);
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+  }
+
+  .float-card {
+    position: absolute;
+    width: 180px;
+    border: 1px solid rgba(17, 19, 15, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.76);
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 18px 60px rgba(26, 28, 23, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .left-card {
+    top: 0;
+    left: 0;
+    transform: rotate(-5deg);
+  }
+
+  .right-card {
+    right: 0;
+    bottom: 0;
+    transform: rotate(5deg);
+  }
+
+  .project-image {
+    position: relative;
+  }
+}
+
+.hero-lines {
+  background-image: linear-gradient(to right, rgba(17, 19, 15, 0.055) 1px, transparent 1px);
+  background-size: calc(100% / 8) 100%;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.marquee {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 24s linear infinite;
+}
+
+.marquee i {
+  font-style: normal;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .page-grid {
+    width: min(100% - 32px, 1320px);
+  }
+
+  .hero-lines {
+    background-size: calc(100% / 4) 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
