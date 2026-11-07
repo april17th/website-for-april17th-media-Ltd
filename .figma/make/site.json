@@ -1,1 +1,10 @@
-{}
+{
+  "description": "Explore an advertising and marketing agency’s services, creative work, and expertise to find strategic support for growing your brand.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
